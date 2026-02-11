@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const value = document.getElementById(`input-${category}`).value;
 
         if (!value) {
-            alert('Please pick an option! 🥺');
+            showError('Please pick an option! 🥺');
             return false;
         }
         return true;
@@ -265,6 +265,40 @@ document.addEventListener('DOMContentLoaded', () => {
        4. Submission
        ------------------------------------------------------------- */
     const planningForm = document.getElementById('planning-form');
+
+    /* -------------------------------------------------------------
+       Helper: Custom Error Modal
+       ------------------------------------------------------------- */
+    const errorModal = document.getElementById('error-modal');
+    const errorMessage = document.getElementById('error-message');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+
+    function showError(msg) {
+        if (errorModal && errorMessage) {
+            errorMessage.textContent = msg;
+            errorModal.classList.remove('hidden');
+            errorModal.classList.add('flex'); // Uses flex to center
+        } else {
+            alert(msg); // Fallback
+        }
+    }
+
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            errorModal.classList.add('hidden');
+            errorModal.classList.remove('flex');
+        });
+    }
+
+    // Close on click outside
+    if (errorModal) {
+        errorModal.addEventListener('click', (e) => {
+            if (e.target === errorModal) {
+                errorModal.classList.add('hidden');
+                errorModal.classList.remove('flex');
+            }
+        });
+    }
 
     planningForm.addEventListener('submit', (e) => {
         e.preventDefault();
