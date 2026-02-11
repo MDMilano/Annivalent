@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         phase1.style.opacity = '0';
         setTimeout(() => {
             phase1.classList.add('hidden-phase');
-            phase1.classList.remove('visible-phase'); // Should remove visible if it had it, or just ensure
+            phase1.classList.remove('visible-phase');
             phase1.classList.remove('flex');
             phase1.style.display = 'none';
 
@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
             celebrationPhase.style.opacity = '0';
             setTimeout(() => {
                 celebrationPhase.classList.add('hidden-phase');
-                celebrationPhase.classList.remove('visible-phase'); // CRITICAL FIX
+                celebrationPhase.classList.remove('visible-phase');
                 celebrationPhase.style.display = 'none';
 
                 anniversaryPhase.classList.remove('hidden-phase');
                 anniversaryPhase.classList.add('visible-phase');
                 anniversaryPhase.style.display = 'flex';
 
-                startTimer(); // Start the anniversary counter
+                startTimer();
             }, 500);
         }, 3500);
     });
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             phase2.classList.remove('hidden-phase');
             phase2.classList.add('visible-phase');
-            phase2.style.display = 'flex'; // Use flex to match the centering classes
+            phase2.style.display = 'flex';
 
             // Fix: Reset opacity to 1 to ensure visibility if it was faded out previously
             setTimeout(() => {
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Anniversary Timer Logic
     function startTimer() {
-        const startDate = new Date('2025-02-13T00:00:00'); // Feb 13, 2025
+        const startDate = new Date('2025-02-13T00:00:00');
 
         function update() {
             const now = new Date();
@@ -124,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('seconds').innerText = seconds;
         }
 
-        update(); // Run immediately
-        setInterval(update, 1000); // Run every second
+        update();
+        setInterval(update, 1000);
     }
 
 
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide all steps
         document.querySelectorAll('.step').forEach(el => {
             el.classList.remove('active-step');
-            el.style.display = 'none'; // Ensure hidden
+            el.style.display = 'none';
         });
 
         // Show current step
@@ -190,13 +190,10 @@ document.addEventListener('DOMContentLoaded', () => {
             this.classList.add('selected', 'border-pink-500', 'ring-2', 'ring-pink-400');
 
             if (value === 'suggestion') {
-                // Show text input
                 suggestionInput.classList.remove('hidden');
                 suggestionInput.focus();
-                // Value will be set by input listener
                 inputField.value = suggestionInput.value;
             } else {
-                // Normal value
                 inputField.value = value;
             }
         });
@@ -207,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('input', function (e) {
             const card = this.closest('.card-option');
             const category = card.dataset.category;
-            // Only update main input if this card is selected
+
             if (card.classList.contains('selected')) {
                 document.getElementById(`input-${category}`).value = this.value;
             }
@@ -215,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function validateStep(step) {
-        if (step === 6) return true; // Final step (message) is optional
+        if (step === 6) return true;
 
         const categories = {
             1: 'date',
@@ -251,21 +248,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const note = document.getElementById('input-note').value;
 
         const recipient = "marcdanielmilano@gmail.com";
-        const subject = encodeURIComponent("My Valentine's Date Choices 💘");
+        const subject = encodeURIComponent("My 1st Anniversary and Valentine's Date Choices 💘");
         const bodyValue = `
-Hi! Here is how I want our date to be:
+            Hi! Here is how I want our date to be:
 
-📅 Date: ${date}
-📍 Place: ${place}
-📸 Photobooth: ${photobooth}
-🍽️ Food: ${food}
-👗 Wear: ${wear}
+            📅 Date: ${date}
+            📍 Place: ${place}
+            📸 Photobooth: ${photobooth}
+            🍽️ Food: ${food}
+            👗 Wear: ${wear}
 
-💌 Special Note:
-${note}
-
-Can't wait! xoxo
-        `.trim();
+            💌 Special Note:
+            ${note}
+                    `.trim();
 
         window.location.href = `mailto:${recipient}?subject=${subject}&body=${encodeURIComponent(bodyValue)}`;
     });
