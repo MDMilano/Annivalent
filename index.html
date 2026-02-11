@@ -37,8 +37,53 @@
     <!-- Main Content Container -->
     <div class="z-10 w-full max-w-4xl p-4 md:p-8">
 
+        <!-- PHASE 0: The Envelope -->
+        <!-- PHASE 0: The Envelope -->
+        <div id="envelope-phase" class="phase flex flex-col items-center justify-center h-[80vh]">
+            <div id="envelope"
+                class="relative w-80 h-52 bg-gray-100 cursor-pointer shadow-2xl rounded-sm transform transition hover:scale-105 duration-300">
+
+                <!-- The Letter (Inside - mimics Phase 1) -->
+                <div class="absolute inset-x-4 top-0 h-48 bg-white shadow-md z-10 flex flex-col items-center justify-center text-center p-2 transition-transform duration-500 ease-in-out border border-gray-100"
+                    id="letter">
+                    <h1 class="font-bold text-brand-dark text-lg leading-tight mb-2">Can you be my <br><span
+                            class="text-brand-accent">Valentine?</span></h1>
+                    <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-brand-accent">
+                        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmZ0NGI4MDgzMzBjbWNwaGRjcGQyOWpqOHAxN3Q0ejRyZjdmcXp3ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9uwnYUDw342pq/giphy.gif"
+                            alt="Cute begging cat" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Envelope Body (Bottom & Sides) -->
+                <div class="absolute inset-0 z-20 pointer-events-none">
+                    <div
+                        class="absolute bottom-0 inset-x-0 border-l-[160px] border-r-[160px] border-b-[104px] border-l-transparent border-r-transparent border-b-gray-50 border-solid drop-shadow-sm">
+                    </div>
+                    <div
+                        class="absolute top-0 bottom-0 left-0 border-l-[160px] border-b-[104px] border-t-[104px] border-l-gray-200 border-b-transparent border-t-transparent border-solid">
+                    </div>
+                    <div
+                        class="absolute top-0 bottom-0 right-0 border-r-[160px] border-b-[104px] border-t-[104px] border-r-gray-200 border-b-transparent border-t-transparent border-solid">
+                    </div>
+                </div>
+
+                <!-- Envelope Flap (Top) -->
+                <div class="absolute top-0 inset-x-0 border-l-[160px] border-r-[160px] border-t-[104px] border-l-transparent border-r-transparent border-t-white border-solid origin-top transition-transform duration-700 z-30 drop-shadow-md"
+                    id="envelope-flap">
+
+                    <!-- Heart Seal -->
+                    <div class="absolute -top-[60px] left-1/2 -translate-x-1/2 text-red-500 drop-shadow-md transform transition duration-500 delay-100"
+                        id="heart-seal">
+                        <i class="fas fa-heart text-4xl animate-pulse"></i>
+                    </div>
+                </div>
+
+            </div>
+            <p class="text-center mt-12 text-brand-dark font-bold text-xl md:text-2xl animate-bounce">Click to Open</p>
+        </div>
+
         <!-- PHASE 1: The Ask -->
-        <div id="phase-1" class="phase flex flex-col items-center justify-center text-center space-y-8">
+        <div id="phase-1" class="phase hidden-phase flex flex-col items-center justify-center text-center space-y-8">
             <h1 class="text-4xl md:text-7xl text-brand-dark font-bold drop-shadow-sm">Can you be my <br><span
                     class="text-brand-accent">Valentine?</span></h1>
 
@@ -108,9 +153,11 @@
 
                     Happy 1st Anniversary and Happy Valentine's Day in Advance!
 
-                    I want to thank God for bringing you into my life. Meeting you was the best thing that has ever happened to me.
+                    I want to thank God for bringing you into my life. Meeting you was the best thing that has ever
+                    happened to me.
 
-                    This past year has truly been the best year of my life. From our first date to this very moment, every second with you is a gift.
+                    This past year has truly been the best year of my life. From our first date to this very moment,
+                    every second with you is a gift.
 
                     I can't wait to create more memories with you.
 
@@ -360,6 +407,24 @@
                     </div>
                 </div>
             </form>
+        </div>
+
+        <!-- PHASE 3: Greeting / Success -->
+        <div id="greeting-phase"
+            class="phase hidden-phase flex flex-col items-center justify-center text-center space-y-6 bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-pink-200 h-auto max-w-lg mx-auto">
+            <h1 class="text-3xl md:text-5xl text-brand-dark font-bold drop-shadow-sm font-pacifico">Happy 1st
+                Anniversary <br>&<br> Happy Valentine's Day! 💑</h1>
+            <p class="text-xl text-gray-700">Thank you for planning this with me! I love you! 💖</p>
+
+            <div
+                class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-8 border-pink-200 shadow-xl mx-auto">
+                <video src="image/mp1.mp4" autoplay loop muted class="w-full h-full object-cover"></video>
+            </div>
+
+            <button id="restart-btn"
+                class="bg-brand-accent hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition hover:scale-105 mt-8">
+                Start Over 🔄
+            </button>
         </div>
 
     </div>

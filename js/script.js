@@ -20,10 +20,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* -------------------------------------------------------------
-       2. Phase Transition Logic (Ask -> Celebration -> Anniversary -> Wizard)
+       2. Phase Transition Logic (Envelope -> Ask -> Celebration -> Anniversary -> Wizard)
        ------------------------------------------------------------- */
+    const envelope = document.getElementById('envelope');
+    const envelopePhase = document.getElementById('envelope-phase');
     const yesBtn = document.getElementById('yes-btn');
     const phase1 = document.getElementById('phase-1');
+
+    // Step 0: Click Envelope -> Show Phase 1
+    if (envelope) {
+        envelope.addEventListener('click', () => {
+            envelope.classList.add('envelope-open');
+            setTimeout(() => {
+                envelopePhase.style.opacity = '0';
+                setTimeout(() => {
+                    envelopePhase.classList.add('hidden-phase');
+                    envelopePhase.classList.remove('flex'); // remove flex to hide completely
+                    envelopePhase.style.display = 'none';
+
+                    phase1.classList.remove('hidden-phase');
+                    phase1.classList.add('visible-phase'); // Ensure it's visible based on CSS
+                    phase1.style.display = 'flex'; // Ensure flex layout is applied
+                    // Fade in effect
+                    phase1.style.opacity = '0';
+                    setTimeout(() => {
+                        phase1.style.opacity = '1';
+                    }, 50);
+
+                }, 500);
+            }, 1500); // Wait longer for the letter up animation
+        });
+    }
     const celebrationPhase = document.getElementById('celebration-phase');
     const anniversaryPhase = document.getElementById('anniversary-phase');
     const planDateBtn = document.getElementById('plan-date-btn');
@@ -263,6 +290,54 @@ document.addEventListener('DOMContentLoaded', () => {
                     `.trim();
 
         window.location.href = `mailto:${recipient}?subject=${subject}&body=${encodeURIComponent(bodyValue)}`;
+
+        // Transition to Greeting Phase
+        setTimeout(() => {
+            document.getElementById('phase-2').classList.add('hidden-phase');
+            document.getElementById('phase-2').classList.remove('visible-phase');
+            document.getElementById('phase-2').style.display = 'none';
+
+            const greetingPhase = document.getElementById('greeting-phase');
+            if (greetingPhase) {
+                greetingPhase.classList.remove('hidden-phase');
+                greetingPhase.classList.add('visible-phase');
+                greetingPhase.style.display = 'flex';
+            }
+        }, 1000); // Wait a bit for mailto to trigger
     });
+
+    /* -------------------------------------------------------------
+       5. Restart Logic
+       ------------------------------------------------------------- */
+    const restartBtn = document.getElementById('restart-btn');
+    if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            // Hide Greeting Phase
+            const greetingPhase = document.getElementById('greeting-phase');
+            greetingPhase.classList.add('hidden-phase');
+            greetingPhase.classList.remove('visible-phase');
+            greetingPhase.style.display = 'none';
+
+            // Reset Forms and State
+            planningForm.reset();
+            currentStep = 1;
+            showStep(1);
+            document.querySelectorAll('.card-option').forEach(el => el.classList.remove('selected', 'border-pink-500', 'ring-2', 'ring-pink-400'));
+
+            // Close Envelope
+            const envelope = document.getElementById('envelope');
+            if (envelope) {
+                envelope.classList.remove('envelope-open');
+            }
+
+            // Show Envelope Phase
+            const envelopePhase = document.getElementById('envelope-phase');
+            if (envelopePhase) {
+                envelopePhase.classList.remove('hidden-phase');
+                envelopePhase.style.opacity = '1';
+                envelopePhase.style.display = 'flex';
+            }
+        });
+    }
 
 });
