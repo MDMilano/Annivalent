@@ -324,6 +324,34 @@ document.addEventListener('DOMContentLoaded', () => {
             showStep(1);
             document.querySelectorAll('.card-option').forEach(el => el.classList.remove('selected', 'border-pink-500', 'ring-2', 'ring-pink-400'));
 
+            // Reset Phases Visibility & Opacity
+            // Ensure Celebration Phase is reset
+            const celebrationPhase = document.getElementById('celebration-phase');
+            if (celebrationPhase) {
+                celebrationPhase.classList.add('hidden-phase');
+                celebrationPhase.classList.remove('visible-phase');
+                celebrationPhase.style.display = 'none';
+                celebrationPhase.style.opacity = '1'; // Reset opacity for next show
+            }
+
+            // Ensure Anniversary Phase is reset
+            const anniversaryPhase = document.getElementById('anniversary-phase');
+            if (anniversaryPhase) {
+                anniversaryPhase.classList.add('hidden-phase');
+                anniversaryPhase.classList.remove('visible-phase');
+                anniversaryPhase.style.display = 'none';
+                anniversaryPhase.style.opacity = '1'; // Reset opacity
+            }
+
+            // Ensure Phase 2 is reset
+            const phase2 = document.getElementById('phase-2');
+            if (phase2) {
+                phase2.classList.add('hidden-phase');
+                phase2.classList.remove('visible-phase');
+                phase2.style.display = 'none';
+                phase2.style.opacity = '1'; // Reset opacity
+            }
+
             // Close Envelope
             const envelope = document.getElementById('envelope');
             if (envelope) {
