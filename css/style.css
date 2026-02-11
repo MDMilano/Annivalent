@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Pacifico&display=swap');
+
+body {
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll from floating hearts */
+    /* Romantic background with fallback gradient */
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(253, 226, 243, 0.8)), url('../image/heart-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Step Wizard Utilities */
+.step {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.step.active-step {
+    display: block;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Pacifico', cursive;
+}
+
+/* Floating Hearts Animation */
+.heart {
+    position: fixed;
+    top: -10vh;
+    transform: translateY(0);
+    animation: fall 4s linear forwards;
+    z-index: 0;
+    /* Behind content */
+    pointer-events: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+/* Pulse Animation for YES button */
+.animate-pulse-custom {
+    animation: pulse-scale 1.5s infinite;
+}
+
+@keyframes pulse-scale {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+/* Phase Transitions */
+.phase {
+    transition: opacity 0.5s ease-in-out;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.hidden-phase {
+    display: none !important;
+    opacity: 0;
+}
+
+.visible-phase {
+    display: flex !important;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card Selection */
+.card-option {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 3px solid transparent;
+}
+
+.card-option:hover {
+    transform: translateY(-5px);
+}
+
+.card-option.selected {
+    border-color: #ef4444;
+    /* Tailwind red-500 */
+    box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.1), 0 2px 4px -1px rgba(239, 68, 68, 0.06);
+    transform: scale(1.02);
+}
+
+/* Custom Scrollbar for cute feel */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fdf2f8;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fbcfe8;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f9a8d4;
+}

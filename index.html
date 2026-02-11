@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💖</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#fdf2f8', // pink-50
+                            DEFAULT: '#fbcfe8', // pink-200
+                            dark: '#be185d', // pink-700
+                            accent: '#ef4444', // red-500
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-brand-light min-h-screen flex items-center justify-center overflow-hidden relative">
+
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container" class="absolute inset-0 pointer-events-none z-0"></div>
+
+    <!-- Main Content Container -->
+    <div class="z-10 w-full max-w-4xl p-4 md:p-8">
+
+        <!-- PHASE 1: The Ask -->
+        <div id="phase-1" class="phase flex flex-col items-center justify-center text-center space-y-8">
+            <h1 class="text-4xl md:text-7xl text-brand-dark font-bold drop-shadow-sm">Can you be my <br><span
+                    class="text-brand-accent">Valentine?</span></h1>
+
+            <!-- Begging Cat -->
+            <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-white shadow-xl">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmZ0NGI4MDgzMzBjbWNwaGRjcGQyOWpqOHAxN3Q0ejRyZjdmcXp3ZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9uwnYUDw342pq/giphy.gif"
+                    alt="Cute begging cat" class="w-full h-full object-cover">
+            </div>
+
+            <button id="yes-btn"
+                class="bg-brand-accent hover:bg-red-600 text-white font-bold py-4 px-12 rounded-full text-xl md:text-2xl shadow-lg transform transition hover:scale-110 animate-pulse-custom">
+                YES! 💖
+            </button>
+        </div>
+
+        <!-- CELEBRATION PHASE (Happy Cat) -->
+        <div id="celebration-phase"
+            class="phase hidden-phase flex flex-col items-center justify-center text-center space-y-8">
+            <h1 class="text-5xl md:text-8xl text-brand-accent font-bold drop-shadow-md animate-bounce">YAY!!! 🎉</h1>
+            <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-yellow-300 shadow-2xl">
+                <!-- Happy Cat GIF -->
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDBhcWZoczdnc29uaXk5cDBoM2NqZmpjZXhlanBra284bWlzcG52aiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/C8ih1zB9e9KJLySClx/giphy.gif"
+                    alt="Happy Cat" class="w-full h-full object-cover">
+            </div>
+            <p class="text-xl md:text-2xl text-brand-dark font-semibold px-4">I knew you'd say yes, because there is no
+                "No" button! 🥰</p>
+        </div>
+
+        <!-- ANNIVERSARY PHASE -->
+        <div id="anniversary-phase"
+            class="phase hidden-phase flex flex-col items-center text-center w-full max-w-lg mx-auto space-y-4 md:space-y-6 bg-white/90 backdrop-blur-md rounded-3xl p-4 md:p-6 shadow-2xl border border-pink-200 h-[85vh] overflow-y-auto custom-scrollbar relative">
+            <h1 class="text-2xl md:text-3xl text-brand-dark font-bold font-pacifico">Happy 1st Anniversary and Happy
+                Valentine's Day!
+                💑</h1>
+
+            <!-- Couple Photo Container (3:4 Ratio) -->
+            <div
+                class="w-full max-w-xs md:max-w-sm aspect-[3/4] rounded-2xl overflow-hidden shadow-lg border-4 border-white mx-auto flex-shrink-0">
+                <!-- <img src="image/cp2.jpg" alt="Us" class="w-full h-full object-cover"> -->
+                <video src="image/mp1.mp4" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+            </div>
+
+            <!-- Realtime Counter -->
+            <div class="w-full bg-pink-50 rounded-xl p-3 md:p-4 border border-pink-100">
+                <p class="text-pink-500 font-bold mb-2 uppercase tracking-wider text-xs md:text-sm">We've been together
+                    for</p>
+                <div id="timer" class="grid grid-cols-4 gap-2 text-center">
+                    <div class="计数-box"><span id="days"
+                            class="block text-xl md:text-3xl font-bold text-brand-dark">0</span><span
+                            class="text-[10px] md:text-xs text-gray-500">Days</span></div>
+                    <div class="计数-box"><span id="hours"
+                            class="block text-xl md:text-3xl font-bold text-brand-dark">0</span><span
+                            class="text-[10px] md:text-xs text-gray-500">Hours</span></div>
+                    <div class="计数-box"><span id="minutes"
+                            class="block text-xl md:text-3xl font-bold text-brand-dark">0</span><span
+                            class="text-[10px] md:text-xs text-gray-500">Mins</span></div>
+                    <div class="计数-box"><span id="seconds"
+                            class="block text-xl md:text-3xl font-bold text-brand-dark">0</span><span
+                            class="text-[10px] md:text-xs text-gray-500">Secs</span></div>
+                </div>
+            </div>
+
+            <!-- Message Container -->
+            <div class="w-full bg-white rounded-xl p-6 border-l-4 border-brand-accent shadow-sm text-left">
+                <h3 class="font-bold text-xl text-brand-dark mb-2">My Message to You 💌</h3>
+                <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                    To my future wife,
+
+                    First of all, Happy 1st Anniversary and Happy Valentine's Day in Advance, my Love!
+                    More away and tampuhan to come HAHA jk.
+
+                    I'm so thankful to have you in my life. You are the best thing that has ever happened to me.
+
+
+                    This past year has been the best year of my life. From our first date to this very moment, every
+                    second with you is a gift.
+
+                    I can't wait to create more memories with you. 💖
+                </p>
+            </div>
+
+            <button id="plan-date-btn"
+                class="bg-brand-dark hover:bg-pink-800 text-white font-bold py-3 px-8 rounded-full text-lg md:text-xl shadow-lg transform transition hover:scale-105 animate-bounce">
+                Let's Plan Our Date! ➡️
+            </button>
+        </div>
+
+        <!-- PHASE 2: The Planning -->
+        <div id="phase-2"
+            class="phase hidden-phase flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm rounded-3xl p-6 md:p-10 shadow-2xl border border-pink-200 max-h-[90vh] overflow-y-auto no-scrollbar relative">
+
+            <form id="planning-form" class="space-y-6 w-full max-w-4xl my-auto">
+
+                <!-- Step 1: Date -->
+                <div class="step active-step" id="step-1">
+                    <h2 class="text-3xl text-center text-brand-dark mb-6">When are you available? 📅</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-4">
+                        <div class="card-option p-4 md:p-6 rounded-2xl border-2 border-pink-100 bg-white shadow-md flex flex-col md:flex-row items-center gap-2 md:gap-4 hover:border-pink-300 transform transition hover:scale-105"
+                            data-category="date" data-value="Feb 13">
+                            <i class="fas fa-heart text-3xl md:text-4xl text-pink-500"></i>
+                            <div class="text-center md:text-left">
+                                <p class="font-bold text-gray-800 text-lg md:text-xl">Feb 13</p>
+                                <p class="text-xs md:text-sm text-gray-500 leading-tight">1st Anniversary Day</p>
+                            </div>
+                        </div>
+                        <div class="card-option p-4 md:p-6 rounded-2xl border-2 border-pink-100 bg-white shadow-md flex flex-col md:flex-row items-center gap-2 md:gap-4 hover:border-pink-300 transform transition hover:scale-105"
+                            data-category="date" data-value="Feb 14">
+                            <i class="fas fa-heart text-3xl md:text-4xl text-red-500"></i>
+                            <div class="text-center md:text-left">
+                                <p class="font-bold text-gray-800 text-lg md:text-xl">Feb 14</p>
+                                <p class="text-xs md:text-sm text-gray-500 leading-tight">Valentine's Day</p>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="date" id="input-date">
+
+                    <div class="flex justify-between mt-8">
+                        <button type="button" id="back-to-anniversary-btn"
+                            class="text-gray-500 hover:text-brand-dark font-semibold px-4"><i
+                                class="fas fa-arrow-left mr-2"></i>Back</button>
+                        <button type="button"
+                            class="next-btn bg-brand-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-pink-700 transition">Next
+                            <i class="fas fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Place -->
+                <div class="step" id="step-2">
+                    <h2 class="text-2xl md:text-3xl text-center text-brand-dark mb-6">Where should we go? 📍</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                        <div class="card-option relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group"
+                            data-category="place" data-value="Space & Time Cube">
+                            <img src="image/stc.jpg" alt="Space & Time Cube"
+                                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2 md:p-4">
+                                <span class="text-white font-bold text-sm md:text-lg leading-tight block">Space & Time
+                                    Cube
+                                    🌌</span>
+                            </div>
+                        </div>
+                        <div class="card-option relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group"
+                            data-category="place" data-value="Jump Yard">
+                            <img src="image/jy.png" alt="Jump Yard"
+                                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2 md:p-4">
+                                <span class="text-white font-bold text-sm md:text-lg leading-tight block">Jump Yard
+                                    🤸</span>
+                            </div>
+                        </div>
+                        <div class="card-option relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group"
+                            data-category="place" data-value="Cinema">
+                            <img src="image/cinema.jpg" alt="Cinema"
+                                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2 md:p-4">
+                                <span class="text-white font-bold text-sm md:text-lg leading-tight block">Cinema
+                                    🎥</span>
+                            </div>
+                        </div>
+                        <div class="card-option group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md border-2 border-pink-100 bg-pink-50 flex flex-col items-center justify-center p-2 md:p-4 cursor-pointer"
+                            data-category="place" data-value="suggestion">
+                            <i class="fas fa-lightbulb text-3xl md:text-4xl text-yellow-400 mb-2"></i>
+                            <span class="text-gray-700 font-bold text-sm md:text-base mb-1">Suggestion?</span>
+                            <input type="text"
+                                class="suggestion-input w-full p-2 rounded border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-400 text-xs md:text-sm hidden"
+                                placeholder="Tell me..." onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <input type="hidden" name="place" id="input-place">
+
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="back-btn text-gray-500 hover:text-brand-dark font-semibold px-4"><i
+                                class="fas fa-arrow-left mr-2"></i>Back</button>
+                        <button type="button"
+                            class="next-btn bg-brand-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-pink-700 transition">Next
+                            <i class="fas fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Photobooth -->
+                <div class="step" id="step-3">
+                    <h2 class="text-2xl md:text-3xl text-center text-brand-dark mb-6">Want to take photos? 📸</h2>
+                    <div class="grid grid-cols-2 gap-4 md:gap-6">
+                        <div class="card-option p-4 md:p-8 rounded-2xl border-2 border-pink-100 bg-white shadow-md flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 hover:border-pink-300 group text-center md:text-left"
+                            data-category="photobooth" data-value="Photobooth">
+                            <i
+                                class="fas fa-camera-retro text-3xl md:text-5xl text-pink-500 group-hover:scale-110 transition"></i>
+                            <span class="font-bold text-gray-800 text-lg md:text-2xl">Photobooth!</span>
+                        </div>
+                        <div class="card-option p-4 md:p-8 rounded-2xl border-2 border-pink-100 bg-white shadow-md flex flex-col items-center justify-center gap-2 hover:border-pink-300 group"
+                            data-category="photobooth" data-value="suggestion">
+                            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-3 text-center md:text-left">
+                                <i class="fas fa-magic text-3xl md:text-4xl text-purple-400"></i>
+                                <span class="font-bold text-gray-800 text-lg md:text-xl">Other idea?</span>
+                            </div>
+                            <input type="text"
+                                class="suggestion-input w-full mt-2 p-2 border-b-2 border-pink-200 focus:outline-none focus:border-pink-500 text-gray-700 hidden text-center"
+                                placeholder="Typed idea..." onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <input type="hidden" name="photobooth" id="input-photobooth">
+
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="back-btn text-gray-500 hover:text-brand-dark font-semibold px-4"><i
+                                class="fas fa-arrow-left mr-2"></i>Back</button>
+                        <button type="button"
+                            class="next-btn bg-brand-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-pink-700 transition">Next
+                            <i class="fas fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Food -->
+                <div class="step" id="step-4">
+                    <h2 class="text-2xl md:text-3xl text-center text-brand-dark mb-6">What should we eat? 🍽️</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                        <div class="card-option relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group"
+                            data-category="food" data-value="Rice Meals">
+                            <img src="image/rc.jpg" alt="Rice Meals"
+                                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2 md:p-4">
+                                <span class="text-white font-bold text-sm md:text-lg leading-tight block">Rice Meals
+                                    🍚</span>
+                            </div>
+                        </div>
+                        <div class="card-option relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group"
+                            data-category="food" data-value="Pasta">
+                            <img src="image/pasta.jpg" alt="Pasta"
+                                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2 md:p-4">
+                                <span class="text-white font-bold text-sm md:text-lg leading-tight block">Pasta
+                                    🍝</span>
+                            </div>
+                        </div>
+                        <div class="card-option relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group"
+                            data-category="food" data-value="Coffee">
+                            <img src="image/coffee.jpg" alt="Coffee"
+                                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div
+                                class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-2 md:p-4">
+                                <span class="text-white font-bold text-sm md:text-lg leading-tight block">Coffee
+                                    ☕</span>
+                            </div>
+                        </div>
+                        <div class="card-option relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group border-2 border-pink-100 bg-pink-50 flex flex-col items-center justify-center p-2 md:p-4"
+                            data-category="food" data-value="suggestion">
+                            <i class="fas fa-utensil-spoon text-3xl md:text-4xl text-green-400 mb-2"></i>
+                            <span class="text-gray-700 font-bold text-sm md:text-base mb-1">Cravings?</span>
+                            <input type="text"
+                                class="suggestion-input w-full p-2 rounded border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-400 text-xs md:text-sm hidden"
+                                placeholder="I want..." onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <input type="hidden" name="food" id="input-food">
+
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="back-btn text-gray-500 hover:text-brand-dark font-semibold px-4"><i
+                                class="fas fa-arrow-left mr-2"></i>Back</button>
+                        <button type="button"
+                            class="next-btn bg-brand-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-pink-700 transition">Next
+                            <i class="fas fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Wear -->
+                <div class="step" id="step-5">
+                    <h2 class="text-3xl text-center text-brand-dark mb-6">What to wear? 👗</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="card-option p-4 md:p-6 rounded-2xl border-2 border-pink-100 bg-white shadow-md text-center transform transition hover:scale-105"
+                            data-category="wear" data-value="Comfy Casual">
+                            <i class="fas fa-tshirt text-4xl md:text-5xl text-blue-400 mb-4"></i>
+                            <span class="block font-bold text-gray-700 text-base md:text-lg">Comfy Casual</span>
+                        </div>
+                        <div class="card-option p-4 md:p-6 rounded-2xl border-2 border-pink-100 bg-white shadow-md text-center transform transition hover:scale-105"
+                            data-category="wear" data-value="Dressed Up">
+                            <i class="fas fa-user-tie text-4xl md:text-5xl text-purple-600 mb-4"></i>
+                            <span class="block font-bold text-gray-700 text-base md:text-lg">Dressed Up</span>
+                        </div>
+                        <div class="card-option p-4 md:p-6 rounded-2xl border-2 border-pink-100 bg-white shadow-md text-center transform transition hover:scale-105 group"
+                            data-category="wear" data-value="suggestion">
+                            <i class="fas fa-hat-wizard text-4xl md:text-5xl text-pink-400 mb-4"></i>
+                            <span class="block font-bold text-gray-700 text-base md:text-lg">Other Idea</span>
+                            <input type="text"
+                                class="suggestion-input w-full mt-2 p-2 border-b-2 border-pink-200 focus:outline-none focus:border-pink-500 text-gray-700 hidden text-center"
+                                placeholder="Suggestion" onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <input type="hidden" name="wear" id="input-wear">
+
+                    <div class="flex justify-between mt-8">
+                        <button type="button" class="back-btn text-gray-500 hover:text-brand-dark font-semibold px-4"><i
+                                class="fas fa-arrow-left mr-2"></i>Back</button>
+                        <button type="button"
+                            class="next-btn bg-brand-dark text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-pink-700 transition">Next
+                            <i class="fas fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 6: Final Message -->
+                <div class="step" id="step-6">
+                    <h2 class="text-3xl text-center text-brand-dark mb-6">Final Message 💌</h2>
+
+                    <div class="bg-white p-6 rounded-2xl border-2 border-pink-100 shadow-sm">
+                        <label for="input-note" class="block text-gray-700 font-bold mb-2">Anything else you want to
+                            say? <i class="fas fa-heart text-pink-500"></i></label>
+                        <textarea id="input-note" name="note" rows="4"
+                            class="w-full p-4 rounded-xl border-2 border-pink-100 focus:outline-none focus:border-pink-500 text-gray-700"
+                            placeholder="I'm excited because..."></textarea>
+                    </div>
+
+                    <div class="flex justify-between mt-8 pt-4">
+                        <button type="button" class="back-btn text-gray-500 hover:text-brand-dark font-semibold px-4"><i
+                                class="fas fa-arrow-left mr-2"></i>Back</button>
+                        <button type="submit" id="submit-btn"
+                            class="bg-brand-accent hover:bg-red-600 text-white font-bold py-3 px-10 rounded-full text-md shadow-md transform transition hover:scale-105">
+                            Send My Response <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
