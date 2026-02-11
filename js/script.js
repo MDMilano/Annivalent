@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 anniversaryPhase.classList.remove('hidden-phase');
                 anniversaryPhase.classList.add('visible-phase');
                 anniversaryPhase.style.display = 'flex';
+                anniversaryPhase.scrollTop = 0;
 
                 startTimer();
             }, 500);
@@ -98,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             phase2.classList.remove('hidden-phase');
             phase2.classList.add('visible-phase');
             phase2.style.display = 'flex';
+            phase2.scrollTop = 0;
 
             // Fix: Reset opacity to 1 to ensure visibility if it was faded out previously
             setTimeout(() => {
@@ -322,7 +324,13 @@ document.addEventListener('DOMContentLoaded', () => {
             planningForm.reset();
             currentStep = 1;
             showStep(1);
+
+            // Clear selections
             document.querySelectorAll('.card-option').forEach(el => el.classList.remove('selected', 'border-pink-500', 'ring-2', 'ring-pink-400'));
+            // Clear hidden inputs manually
+            document.querySelectorAll('input[type="hidden"]').forEach(el => el.value = '');
+            // Hide suggestion inputs
+            document.querySelectorAll('.suggestion-input').forEach(el => el.classList.add('hidden'));
 
             // Reset Phases Visibility & Opacity
             // Ensure Celebration Phase is reset
@@ -331,25 +339,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 celebrationPhase.classList.add('hidden-phase');
                 celebrationPhase.classList.remove('visible-phase');
                 celebrationPhase.style.display = 'none';
-                celebrationPhase.style.opacity = '1'; // Reset opacity for next show
+                celebrationPhase.style.opacity = '1';
             }
 
-            // Ensure Anniversary Phase is reset
+            // Ensure Anniversary Phase is reset & Scrolled to Top
             const anniversaryPhase = document.getElementById('anniversary-phase');
             if (anniversaryPhase) {
                 anniversaryPhase.classList.add('hidden-phase');
                 anniversaryPhase.classList.remove('visible-phase');
                 anniversaryPhase.style.display = 'none';
-                anniversaryPhase.style.opacity = '1'; // Reset opacity
+                anniversaryPhase.style.opacity = '1';
+                anniversaryPhase.scrollTop = 0; // Scroll to top
             }
 
-            // Ensure Phase 2 is reset
+            // Ensure Phase 2 is reset & Scrolled to Top
             const phase2 = document.getElementById('phase-2');
             if (phase2) {
                 phase2.classList.add('hidden-phase');
                 phase2.classList.remove('visible-phase');
                 phase2.style.display = 'none';
-                phase2.style.opacity = '1'; // Reset opacity
+                phase2.style.opacity = '1';
+                phase2.scrollTop = 0; // Scroll wizard to top too
             }
 
             // Close Envelope
